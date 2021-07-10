@@ -1,0 +1,13 @@
+{
+  "name": "test-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm --prefix client start\" \"npm --prefix server start\"",
+    "install": "npm --prefix client install && npm --prefix server install"
+  },
+  "devDependencies": {
+    "concurrently": "6.2.0"
+  },
+  "dependencies": {}
+}

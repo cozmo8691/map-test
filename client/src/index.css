@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  font-family: "Montserrat", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+p {
+  font-weight: 300;
+  font-size: 0.7rem;
+}
+
+input {
+  display: block;
+  border: 2px solid #333;
+  padding: 0.3rem;
+  margin-top: 5px;
+}
+
+fieldset {
+  border: none;
+}
+
+.ueln-number {
+  margin: 20px 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  height: 100vh;
+  max-width: 90%;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.map-container {
+  display: flex;
+  width: 55%;
+}
+
+.marker {
+  background-image: url("marker-01.png");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.App-logo {
+  width: 180px;
+  height: 100px;
+}
+
+form {
+  display: block;
+  width: 100%;
+}
+
+.date-container {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+}
+
+.date-inputs-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-inputs {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.date-inputs input {
+  width: 30px;
+}
+
+.date-inputs fieldset {
+  margin-right: 10px;
+}
