@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import mapboxgl from "mapbox-gl";
 import Marker from "./Marker";
+import User from "./User";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const styles = {
@@ -82,7 +83,11 @@ const MapboxGLMap = ({
     }
   }, [map]);
 
-  return <div ref={(el) => (mapContainer.current = el)} style={styles} />;
+  return (
+    <div ref={(el) => (mapContainer.current = el)} style={styles}>
+      <User />
+    </div>
+  );
 };
 
 export default MapboxGLMap;

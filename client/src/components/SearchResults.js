@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../util";
+import { formatUELN, formatDisplayDate, formatDateObjDisplay } from "../util";
 
 import styles from "./styles/SearchResults.module.css";
 
@@ -22,15 +22,15 @@ const SearchResults = ({
       <h2 className={styles.searchResultsHeading}>
         Movement locations for UELN:
       </h2>
-      <p className={styles.uelnNumber}>{searchTerm}</p>
+      <p className={styles.uelnNumber}>{formatUELN(searchTerm)}</p>
       <div className={styles.datesOuter}>
         <div className={styles.datesContainer}>
           <h3 className={styles.datesLabel}>From date:</h3>
-          <p className={styles.datesValue}>{formatDate(fromDate)}</p>
+          <p className={styles.datesValue}>{formatDateObjDisplay(fromDate)}</p>
         </div>
         <div className={styles.datesContainer}>
           <h3 className={styles.datesLabel}>To date:</h3>
-          <p className={styles.datesValue}>{formatDate(toDate)}</p>
+          <p className={styles.datesValue}>{formatDateObjDisplay(toDate)}</p>
         </div>
       </div>
       <ul className={styles.locationResults}>
@@ -49,7 +49,8 @@ const SearchResults = ({
                 </span>
                 <div className={styles.resultItemWrapper}>
                   <div>
-                    {date_from}, {date_to}
+                    {formatDisplayDate(date_from)} to{" "}
+                    {formatDisplayDate(date_to)}
                   </div>
                   <div className={styles.location}>
                     {city}, {county}

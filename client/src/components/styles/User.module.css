@@ -1,0 +1,17 @@
+.userPanel {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  font-weight: 600;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+.name {
+  padding: 4px;
+}
