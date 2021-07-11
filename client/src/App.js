@@ -12,6 +12,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("8260001");
   const [fromDate, setFromDate] = useState(dateFromTemplate);
   const [toDate, setToDate] = useState(dateToTemplate);
+  const [currentLocation, setCurrentLocation] = useState(null);
 
   const performSearch = useCallback(() => {
     const performSearch = async () => {
@@ -43,10 +44,12 @@ function App() {
 
   const resetSearch = () => {
     setData(null);
+    setCurrentLocation(null);
   };
 
-  // console.log("fromDate:", fromDate);
-  // console.log("toDate:", toDate);
+  // const handleMouseOver = (id) => {
+  //   setCurrentLocation(id);
+  // };
 
   // {
   //   "ueln": "8260001",
@@ -60,6 +63,9 @@ function App() {
   //   }
   // },
 
+  const mapPinDefault = "material-icons-outlined";
+  const mapPinHighlight = "material-icons red";
+
   return (
     <div className="container">
       <div className="search">
@@ -69,8 +75,6 @@ function App() {
           alt="Equine Register"
           onClick={resetSearch}
         />
-        <span className="material-icons red">room</span>
-        <span className="material-icons-outlined">room</span>
         {data ? (
           <div className="search-results">
             <div className="toggle-display">
@@ -99,8 +103,18 @@ function App() {
                   location: { city, county },
                 }) => {
                   return (
-                    <li key={id}>
-                      <span className="material-icons-outlined">room</span>
+                    <li
+                      key={id}
+                      onMouseOver={() => setCurrentLocation(id)}
+                      onMouseOut={() => setCurrentLocation(null)}>
+                      <span
+                        className={
+                          id === currentLocation
+                            ? mapPinHighlight
+                            : mapPinDefault
+                        }>
+                        room
+                      </span>
                       <div>
                         <div>
                           {date_from}, {date_to}
@@ -212,7 +226,7 @@ function App() {
       </div>
 
       <div className="map-container">
-        <Map data={data} />
+        <Map data={data} currentLocation={currentLocation} />
       </div>
     </div>
   );

@@ -165,21 +165,18 @@ form {
 
 .location-results li {
   display: flex;
-  /* justify-content: space-between; */
   text-align: left;
   border-bottom: 1px solid #999;
-  /* margin: 10px 0 10px 0; */
   padding: 10px 0 10px 0;
   position: relative;
+  cursor: pointer;
 }
 
 .location-results div {
-  /* border: 1px solid red; */
   padding-left: 2px;
 }
 
 .location-results li .arrow {
-  /* border: 1px solid red; */
   position: absolute;
   right: 0;
 }

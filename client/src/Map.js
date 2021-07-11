@@ -9,7 +9,10 @@ const styles = {
   height: "100%",
 };
 
-const MapboxGLMap = ({ data }) => {
+const mapPinDefault = "material-icons-outlined";
+const mapPinHighlight = "material-icons red";
+
+const MapboxGLMap = ({ data, currentLocation }) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -31,25 +34,34 @@ const MapboxGLMap = ({ data }) => {
     const markers = data.map((result) => {
       const {
         id,
-        location: { lat, long },
+        location: { lat, long, city, county },
       } = result;
 
       // <span class="material-icons red">room</span>
 
       const markerNode = document.createElement("div");
       ReactDOM.render(
-        <span id={id} className="material-icons-outlined marker">
+        <span
+          id={id}
+          className={id === currentLocation ? mapPinHighlight : mapPinDefault}>
           room
         </span>,
         markerNode
       );
 
-      return new mapboxgl.Marker(markerNode).setLngLat([long, lat]).addTo(map);
+      const popup = new mapboxgl.Popup({ offset: 25 }).setText(
+        `${city}, ${county}`
+      );
+
+      return new mapboxgl.Marker(markerNode)
+        .setLngLat([long, lat])
+        .setPopup(popup)
+        .addTo(map);
     });
 
     currentMarkers.current = markers;
     console.log(currentMarkers.current);
-  }, [data, isMapLoaded, map]);
+  }, [data, isMapLoaded, map, currentLocation]);
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
