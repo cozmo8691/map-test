@@ -1,0 +1,19 @@
+.dateInputsContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dateInputs {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.dateInputsInput {
+  width: 30px;
+}
+
+.dateInputsFieldset {
+  margin-right: 10px;
+}

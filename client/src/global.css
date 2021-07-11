@@ -42,15 +42,7 @@ fieldset {
   border: none;
 }
 
-.ueln-number {
-  margin: 20px 0;
-}
-
-.ueln-number input {
-  width: 280px;
-}
-
-.container {
+/* .container {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
@@ -62,7 +54,7 @@ fieldset {
   display: flex;
   flex-direction: column;
   width: 45%;
-}
+} */
 
 .map-container {
   display: flex;
@@ -80,12 +72,12 @@ fieldset {
   cursor: pointer;
 }
 
-form {
+/* form {
   display: block;
   width: 100%;
-}
+} */
 
-form button {
+/* form button {
   background-color: rgb(0, 103, 96);
   padding: 12px;
   margin: 40px 0;
@@ -101,21 +93,21 @@ form button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-}
+} */
 
-.date-container {
+/* .date-container {
   margin-top: 20px;
   width: 100%;
   display: flex;
-}
+} */
 
-.date-inputs-container {
+/* .date-inputs-container {
   width: 50%;
   display: flex;
   flex-direction: column;
-}
+} */
 
-.date-inputs {
+/* .date-inputs {
   margin-top: 5px;
   display: flex;
   flex-direction: row;
@@ -127,17 +119,17 @@ form button {
 
 .date-inputs fieldset {
   margin-right: 10px;
-}
+} */
 
 /* search results */
 
-.search-results {
+/* .search-results {
   margin-right: 30px;
-}
+} */
 
 /* toggle display buttons */
 
-.toggle-display {
+/* .toggle-display {
   display: flex;
   width: 100%;
   margin-bottom: 20px;
@@ -168,34 +160,27 @@ form button {
 .btn-selected {
   background-color: #fff;
   box-shadow: none;
-}
+} */
 
 /**/
 
-.search-results h2 {
+/* .search-results h2 {
   font-weight: 500;
-}
+} */
 
-.search-results .ueln-number {
-  font-weight: 600;
-  font-size: 1.3rem;
-  margin: 0 0 10px;
-  padding: 0;
-}
-
-.search-results-dates {
+/* .search-results-dates {
   display: flex;
-}
+} */
 
-.search-results-dates .sr-date-container {
+/* .search-results-dates .sr-date-container {
   display: flex;
   flex-direction: column;
   margin: 10px 0 20px;
   width: 50%;
   display: flex;
-}
+} */
 
-.search-results-dates .sr-date-container h3 {
+/* .search-results-dates .sr-date-container h3 {
   font-size: 0.7rem;
   font-weight: 500;
 }
@@ -203,9 +188,9 @@ form button {
 .search-results-dates .sr-date-container p {
   font-size: 1rem;
   font-weight: 600;
-}
+} */
 
-.location-results {
+/* .location-results {
   border-top: 1px solid #999;
   font-size: 0.7rem;
   font-weight: 400;
@@ -227,11 +212,17 @@ form button {
 .location-results li .arrow {
   position: absolute;
   right: 0;
+} */
+
+.arrow {
+  position: absolute;
+  right: 0;
+  top: 15px;
 }
 
 /* spinner */
 
-@keyframes spinner {
+/* @keyframes spinner {
   from {
     transform: rotate(0deg);
   }
@@ -247,7 +238,7 @@ form button {
   border-right: 3px solid white;
   border-radius: 50%;
   animation: spinner 0.6s linear infinite;
-}
+} */
 
 /* icons */
 .material-icons.red {

@@ -1,0 +1,54 @@
+.searchForm {
+  display: block;
+  width: 100%;
+}
+
+.uelnNumber {
+  margin: 20px 0;
+}
+
+.uelnNumberInput {
+  width: 280px;
+}
+
+.dateContainer {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.formButton {
+  background-color: rgb(0, 103, 96);
+  padding: 12px;
+  margin: 40px 0;
+  width: 250px;
+  color: #fff;
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  min-width: 20px;
+  min-height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-right: 3px solid white;
+  border-radius: 50%;
+  animation: spinner 0.6s linear infinite;
+}

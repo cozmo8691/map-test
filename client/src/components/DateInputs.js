@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./DateInputs.module.css";
 
 const DateInputs = ({
   title,
@@ -6,31 +7,34 @@ const DateInputs = ({
   handleDateChange,
 }) => {
   return (
-    <div className="date-inputs-container">
+    <div className={styles.dateInputsContainer}>
       <h2>{title}</h2>
-      <div className="date-inputs">
-        <fieldset>
+      <div className={styles.dateInputs}>
+        <fieldset className={styles.dateInputsFieldset}>
           <label>Day</label>
           <input
             type="text"
             value={day}
             onChange={(e) => handleDateChange("day", e.target.value)}
+            className={styles.dateInputsInput}
           />
         </fieldset>
-        <fieldset>
+        <fieldset className={styles.dateInputsFieldset}>
           <label>Month</label>
           <input
             type="text"
             value={month}
             onChange={(e) => handleDateChange("month", e.target.value)}
+            className={styles.dateInputsInput}
           />
         </fieldset>
-        <fieldset>
+        <fieldset className={styles.dateInputsFieldset}>
           <label>Year</label>
           <input
             type="text"
             value={year}
             onChange={(e) => handleDateChange("year", e.target.value)}
+            className={styles.dateInputsInput}
           />
         </fieldset>
       </div>

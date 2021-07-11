@@ -1,6 +1,8 @@
 import React from "react";
 import { formatDate } from "../util";
 
+import styles from "./SearchResults.module.css";
+
 const SearchResults = ({
   searchTerm,
   fromDate,
@@ -12,39 +14,44 @@ const SearchResults = ({
   mapPinHighlight,
 }) => {
   return (
-    <div className="search-results">
-      <div className="toggle-display">
-        <div className="btn-locations btn-selected">Locations</div>
-        <div className="btn-heatmap">Heat Map</div>
+    <div className={styles.searchResults}>
+      <div className={styles.toggleDisplay}>
+        <div className={styles.btnLocationsSelected}>Locations</div>
+        <div className={styles.btnHeatmap}>Heat Map</div>
       </div>
-      <h2>Movement locations for UELN:</h2>
-      <p className="ueln-number">{searchTerm}</p>
-      <div className="search-results-dates">
-        <div className="sr-date-container">
-          <h3>From date:</h3>
-          <p>{formatDate(fromDate)}</p>
+      <h2 className={styles.searchResultsHeading}>
+        Movement locations for UELN:
+      </h2>
+      <p className={styles.uelnNumber}>{searchTerm}</p>
+      <div className={styles.datesOuter}>
+        <div className={styles.datesContainer}>
+          <h3 className={styles.datesLabel}>From date:</h3>
+          <p className={styles.datesValue}>{formatDate(fromDate)}</p>
         </div>
-        <div className="sr-date-container">
-          <h3>To date:</h3>
-          <p>{formatDate(toDate)}</p>
+        <div className={styles.datesContainer}>
+          <h3 className={styles.datesLabel}>To date:</h3>
+          <p className={styles.datesValue}>{formatDate(toDate)}</p>
         </div>
       </div>
-      <ul className="location-results">
+      <ul className={styles.locationResults}>
         {data.length > 0 ? (
           data.map(({ id, date_from, date_to, location: { city, county } }) => {
             return (
-              <li key={id} onClick={() => setCurrentLocation(id)}>
+              <li
+                key={id}
+                onClick={() => setCurrentLocation(id)}
+                className={styles.resultItem}>
                 <span
                   className={
                     id === currentLocation ? mapPinHighlight : mapPinDefault
                   }>
                   room
                 </span>
-                <div>
+                <div className={styles.resultItemWrapper}>
                   <div>
                     {date_from}, {date_to}
                   </div>
-                  <div>
+                  <div className={styles.location}>
                     {city}, {county}
                   </div>
                 </div>

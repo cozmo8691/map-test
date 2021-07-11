@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from "react";
 import axios from "axios";
-import Map from "./components/Map";
-import ERLogo from "./ERLogo02.svg";
-import SearchForm from "./components/SearchForm";
-import SearchResults from "./components/SearchResults";
-import { formatDate, sleep } from "./util";
+import Map from "./Map";
+import ERLogo from "../assets/ERLogo02.svg";
+import SearchForm from "./SearchForm";
+import SearchResults from "./SearchResults";
+import { formatDate, sleep } from "../util";
+import styles from "./App.module.css";
 
 function App() {
   const [data, setData] = useState(null);
@@ -66,12 +67,12 @@ function App() {
     setCurrentLocation(null);
   };
 
-  const mapPinDefault = "material-icons-outlined";
-  const mapPinHighlight = "material-icons red";
+  const mapPinDefault = "material-icons-outlined marker";
+  const mapPinHighlight = "material-icons red marker";
 
   return (
-    <div className="container">
-      <div className="search">
+    <div className={styles.container}>
+      <div className={styles.search}>
         <img
           src={ERLogo}
           className="App-logo"
