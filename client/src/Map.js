@@ -16,26 +16,33 @@ const MapboxGLMap = ({ data }) => {
   const currentMarkers = useRef([]);
 
   useEffect(() => {
-    if (!isMapLoaded) {
-      return;
-    }
-    console.log("data:", data);
-
     currentMarkers.current.forEach((marker) => {
       marker.remove();
     });
+
+    if (!isMapLoaded || !data) {
+      return;
+    }
+    console.log("data:", data);
 
     currentMarkers.current = [];
     // console.log(currentMarkers.current);
 
     const markers = data.map((result) => {
       const {
-        ueln,
+        id,
         location: { lat, long },
       } = result;
 
+      // <span class="material-icons red">room</span>
+
       const markerNode = document.createElement("div");
-      ReactDOM.render(<Marker id={ueln} className="marker" />, markerNode);
+      ReactDOM.render(
+        <span id={id} className="material-icons-outlined marker">
+          room
+        </span>,
+        markerNode
+      );
 
       return new mapboxgl.Marker(markerNode).setLngLat([long, lat]).addTo(map);
     });
