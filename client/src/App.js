@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import axios from "axios";
 import Map from "./Map";
-import ERLogo from "./ERLogo.svg";
+import ERLogo from "./ERLogo02.svg";
 import { formatDate } from "./util/formatDates";
 
 const dateFromTemplate = { day: "01", month: "01", year: "2019" };
@@ -79,13 +79,13 @@ function App() {
               <div className="btn-heatmap">Heat Map</div>
             </div>
             <h2>Movement locations for UELN:</h2>
-            <p>{searchTerm}</p>
+            <p className="ueln-number">{searchTerm}</p>
             <div className="search-results-dates">
-              <div>
+              <div className="sr-date-container">
                 <h3>From date:</h3>
                 <p>{formatDate(fromDate)}</p>
               </div>
-              <div>
+              <div className="sr-date-container">
                 <h3>To date:</h3>
                 <p>{formatDate(toDate)}</p>
               </div>

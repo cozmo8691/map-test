@@ -46,6 +46,10 @@ fieldset {
   margin: 20px 0;
 }
 
+.ueln-number input {
+  width: 280px;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -83,7 +87,7 @@ form {
 
 form button {
   background-color: rgb(0, 103, 96);
-  padding: 8px;
+  padding: 12px;
   margin: 40px 0;
   width: 250px;
   color: #fff;
@@ -100,7 +104,7 @@ form button {
 }
 
 .date-container {
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100%;
   display: flex;
 }
@@ -125,18 +129,13 @@ form button {
   margin-right: 10px;
 }
 
+/* search results */
+
 .search-results {
-  /* border: 1px solid red; */
   margin-right: 30px;
 }
 
-.material-icons.red {
-  color: #fc0303;
-}
-
-.material-icons-outlined.md-18 {
-  font-size: 1rem;
-}
+/* toggle display buttons */
 
 .toggle-display {
   display: flex;
@@ -171,8 +170,39 @@ form button {
   box-shadow: none;
 }
 
+/**/
+
+.search-results h2 {
+  font-weight: 500;
+}
+
+.search-results .ueln-number {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
 .search-results-dates {
   display: flex;
+}
+
+.search-results-dates .sr-date-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 20px;
+  width: 50%;
+  display: flex;
+}
+
+.search-results-dates .sr-date-container h3 {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.search-results-dates .sr-date-container p {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .location-results {
@@ -199,10 +229,7 @@ form button {
   right: 0;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-}
+/* spinner */
 
 @keyframes spinner {
   from {
@@ -220,4 +247,13 @@ form button {
   border-right: 3px solid white;
   border-radius: 50%;
   animation: spinner 0.6s linear infinite;
+}
+
+/* icons */
+.material-icons.red {
+  color: #fc0303;
+}
+
+.material-icons-outlined.md-18 {
+  font-size: 1rem;
 }
