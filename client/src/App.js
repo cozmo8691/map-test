@@ -7,12 +7,18 @@ import { formatDate } from "./util/formatDates";
 const dateFromTemplate = { day: "01", month: "01", year: "2019" };
 const dateToTemplate = { day: "04", month: "01", year: "2019" };
 
+const sleep = (delay) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+
 function App() {
   const [data, setData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("8260001");
   const [fromDate, setFromDate] = useState(dateFromTemplate);
   const [toDate, setToDate] = useState(dateToTemplate);
   const [currentLocation, setCurrentLocation] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const performSearch = useCallback(() => {
     const performSearch = async () => {
@@ -20,12 +26,13 @@ function App() {
       const from = formatDate(fromDate);
       const to = formatDate(toDate);
 
-      console.log(from);
+      await sleep(1000); // simulate network latency
 
       const { data } = await axios.get(
         `http://localhost:4000/equines/${searchTerm}/?from=${from}&to=${to}`
       ); // todo: extract out
       setData(data);
+      setIsLoading(false);
     };
 
     performSearch();
@@ -33,6 +40,12 @@ function App() {
 
   const handleSearchClick = (e) => {
     e.preventDefault();
+
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true);
     performSearch();
   };
 
@@ -46,22 +59,6 @@ function App() {
     setData(null);
     setCurrentLocation(null);
   };
-
-  // const handleMouseOver = (id) => {
-  //   setCurrentLocation(id);
-  // };
-
-  // {
-  //   "ueln": "8260001",
-  //   "date_from": "2019-01-01",
-  //   "date_to": "2019-01-02",
-  //   "location": {
-  //     "city": "Cheltenham",
-  //     "county": "Gloucestershire",
-  //     "long": "-2.078253",
-  //     "lat": "51.899387"
-  //   }
-  // },
 
   const mapPinDefault = "material-icons-outlined";
   const mapPinHighlight = "material-icons red";
@@ -95,18 +92,9 @@ function App() {
             </div>
             <ul className="location-results">
               {data.map(
-                ({
-                  id,
-                  ueln,
-                  date_from,
-                  date_to,
-                  location: { city, county },
-                }) => {
+                ({ id, date_from, date_to, location: { city, county } }) => {
                   return (
-                    <li
-                      key={id}
-                      onMouseOver={() => setCurrentLocation(id)}
-                      onMouseOut={() => setCurrentLocation(null)}>
+                    <li key={id} onClick={() => setCurrentLocation(id)}>
                       <span
                         className={
                           id === currentLocation
@@ -220,7 +208,18 @@ function App() {
               </div>
             </div>
 
-            <button onClick={handleSearchClick}>Search now</button>
+            <button onClick={handleSearchClick}>
+              {isLoading ? (
+                <div className="spinner" />
+              ) : (
+                <>
+                  Search now{" "}
+                  <span className="material-icons-outlined md-18 arrow">
+                    chevron_right
+                  </span>
+                </>
+              )}
+            </button>
           </form>
         )}
       </div>
