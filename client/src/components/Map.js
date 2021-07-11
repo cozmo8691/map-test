@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import mapboxgl from "mapbox-gl";
-import Marker from "./components/Marker";
+import Marker from "./Marker";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const styles = {
@@ -9,10 +9,12 @@ const styles = {
   height: "100%",
 };
 
-const mapPinDefault = "material-icons-outlined";
-const mapPinHighlight = "material-icons red";
-
-const MapboxGLMap = ({ data, currentLocation }) => {
+const MapboxGLMap = ({
+  data,
+  currentLocation,
+  mapPinDefault,
+  mapPinHighlight,
+}) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -26,10 +28,8 @@ const MapboxGLMap = ({ data, currentLocation }) => {
     if (!isMapLoaded || !data) {
       return;
     }
-    console.log("data:", data);
 
     currentMarkers.current = [];
-    // console.log(currentMarkers.current);
 
     const markers = data.map((result) => {
       const {
@@ -37,15 +37,14 @@ const MapboxGLMap = ({ data, currentLocation }) => {
         location: { lat, long, city, county },
       } = result;
 
-      // <span class="material-icons red">room</span>
-
       const markerNode = document.createElement("div");
       ReactDOM.render(
-        <span
+        <Marker
           id={id}
-          className={id === currentLocation ? mapPinHighlight : mapPinDefault}>
-          room
-        </span>,
+          currentLocation={currentLocation}
+          mapPinDefault={mapPinDefault}
+          mapPinHighlight={mapPinHighlight}
+        />,
         markerNode
       );
 
@@ -60,8 +59,7 @@ const MapboxGLMap = ({ data, currentLocation }) => {
     });
 
     currentMarkers.current = markers;
-    console.log(currentMarkers.current);
-  }, [data, isMapLoaded, map, currentLocation]);
+  }, [data, isMapLoaded, map, currentLocation, mapPinDefault, mapPinHighlight]);
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
@@ -76,7 +74,6 @@ const MapboxGLMap = ({ data, currentLocation }) => {
       map.on("load", () => {
         setMap(map);
         setIsMapLoaded(true);
-        // map.resize();
       });
     };
 

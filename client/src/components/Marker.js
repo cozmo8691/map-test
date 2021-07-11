@@ -1,6 +1,11 @@
-/* src/components/Marker.js */
 import React from "react";
 
-const Marker = ({ id }) => <div id={`marker-${id}`} className="marker" />;
+const Marker = ({ id, currentLocation, mapPinHighlight, mapPinDefault }) => (
+  <span
+    id={id}
+    className={id === currentLocation ? mapPinHighlight : mapPinDefault}>
+    room
+  </span>
+);
 
 export default Marker;
