@@ -1,6 +1,6 @@
 import React from "react";
 import DateInputs from "./DateInputs";
-import styles from "./SearchForm.module.css";
+import styles from "./styles/SearchForm.module.css";
 
 const SearchForm = ({
   searchTerm,
@@ -46,9 +46,7 @@ const SearchForm = ({
         ) : (
           <>
             Search now{" "}
-            <span className="material-icons-outlined md-18 arrow">
-              chevron_right
-            </span>
+            <span className="material-icons-outlined md-18">chevron_right</span>
           </>
         )}
       </button>

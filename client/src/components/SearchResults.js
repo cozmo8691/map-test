@@ -1,7 +1,7 @@
 import React from "react";
 import { formatDate } from "../util";
 
-import styles from "./SearchResults.module.css";
+import styles from "./styles/SearchResults.module.css";
 
 const SearchResults = ({
   searchTerm,

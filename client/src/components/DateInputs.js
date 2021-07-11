@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DateInputs.module.css";
+import styles from "./styles/DateInputs.module.css";
 
 const DateInputs = ({
   title,

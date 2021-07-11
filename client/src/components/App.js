@@ -5,7 +5,7 @@ import ERLogo from "../assets/ERLogo02.svg";
 import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
 import { formatDate, sleep } from "../util";
-import styles from "./App.module.css";
+import styles from "./styles/App.module.css";
 
 function App() {
   const [data, setData] = useState(null);
