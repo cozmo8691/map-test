@@ -35,3 +35,7 @@ Run the test from the client directory:
 ### `cd client`
 
 ### `npm t`
+
+## Todo
+
+Validation, accessibility, refactor components. Also a separate branch for heatmap (wip - not working)
