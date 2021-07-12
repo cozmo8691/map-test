@@ -39,3 +39,7 @@ Run the test from the client directory:
 ## Todo
 
 Validation, accessibility, refactor components. Also a separate branch for heatmap (wip - not working)
+
+![image](https://user-images.githubusercontent.com/17351828/125252450-4c982580-e2f0-11eb-9dc3-238774f717f2.png)
+![image](https://user-images.githubusercontent.com/17351828/125252550-66d20380-e2f0-11eb-969e-f4f6591dcf76.png)
+
