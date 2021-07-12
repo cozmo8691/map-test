@@ -62,7 +62,15 @@ const MapboxGLMap = ({
     });
 
     currentMarkers.current = markers;
-  }, [data, isMapLoaded, map, currentLocation, mapPinDefault, mapPinHighlight]);
+  }, [
+    data,
+    isMapLoaded,
+    map,
+    currentLocation,
+    mapPinDefault,
+    mapPinHighlight,
+    isShowHeatmap,
+  ]);
 
   useEffect(() => {
     if (!isMapLoaded || !data || !isShowHeatmap) {
@@ -75,37 +83,31 @@ const MapboxGLMap = ({
 
     currentMarkers.current = [];
 
-    // clear the markers
-
     // add a duration property to the data
-    const dataWithDuration = data.map((d) => {
+    const features = data.map((d) => {
       const duration = differenceInDays(
         new Date(d.date_to),
         new Date(d.date_from)
       );
 
-      return { ...d, duration };
+      return {
+        type: "Feature",
+        properties: { duration },
+        geometry: {
+          type: "Point",
+          coordinates: [d.location.long, d.location.lat],
+        },
+      };
     });
-
-    console.log(dataWithDuration);
-
-    const hmData = {
-      features: dataWithDuration,
-      type: "FeatureCollection",
-    };
-
-    // convert data to GeoJSON
 
     // add the source
     map.addSource("locations", {
       type: "geojson",
       data: {
         type: "FeatureCollection",
-        features: hmData,
+        features,
       },
     });
-
-    // map.getSource("locations").setData(hmData);
 
     map.addLayer(
       {
@@ -160,8 +162,8 @@ const MapboxGLMap = ({
           // Transition from heatmap to circle layer by zoom level
           "heatmap-opacity": ["interpolate", ["linear"], ["zoom"], 7, 1, 9, 0],
         },
-      }
-      // "waterway-label"
+      },
+      "waterway-label"
     );
   }, [data, isMapLoaded, isShowHeatmap, map]);
 
