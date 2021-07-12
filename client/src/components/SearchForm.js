@@ -36,6 +36,7 @@ const SearchForm = () => {
           dateObject={fromDate}
           handleDateChange={handleFromDateChange}
         />
+        <div className={styles.to}>to</div>
         <DateInputs
           title="To date"
           dateObject={toDate}
