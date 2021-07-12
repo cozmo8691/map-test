@@ -24,6 +24,8 @@ Then from the root of the project run
 
 ### `npm start`
 
+The application will be available to view on http://localhost:3000/
+
 ## Tests
 
 There is a basic test which simulates a user performing a search and tests that the ui renders some details from a mocked response.
