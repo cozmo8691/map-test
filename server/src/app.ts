@@ -27,10 +27,6 @@ const app = express();
 app.use(express.json());
 app.use(cors(corsOptions));
 
-interface ILocation {
-  name: string;
-}
-
 app.get("/equines/:query", async (req, res) => {
   const query = req.params.query;
   const { from, to } = req.query;
