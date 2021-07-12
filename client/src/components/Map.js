@@ -114,7 +114,7 @@ const MapboxGLMap = ({
         id: "locations-heat",
         type: "heatmap",
         source: "locations",
-        maxzoom: 5,
+        maxzoom: 9,
         paint: {
           // Increase the heatmap weight based on frequency and property magnitude
           "heatmap-weight": [
