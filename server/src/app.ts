@@ -4,7 +4,6 @@ import express from "express";
 import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
 
-import format from "date-fns/format";
 import compareAsc from "date-fns/compareAsc";
 import compareDesc from "date-fns/compareDesc";
 
