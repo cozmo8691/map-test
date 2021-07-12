@@ -4,6 +4,7 @@ import Map from "./Map";
 import ERLogo from "../assets/ERLogo02.svg";
 import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
+import { AppContext } from "./contextLib";
 import { formatDate, sleep } from "../util";
 import styles from "./styles/App.module.css";
 
@@ -79,29 +80,24 @@ function App() {
           alt="Equine Register"
           onClick={resetSearch}
         />
-        {data ? (
-          <SearchResults
-            searchTerm={searchTerm}
-            fromDate={fromDate}
-            toDate={toDate}
-            data={data}
-            setCurrentLocation={setCurrentLocation}
-            currentLocation={currentLocation}
-            mapPinDefault={mapPinDefault}
-            mapPinHighlight={mapPinHighlight}
-          />
-        ) : (
-          <SearchForm
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            fromDate={fromDate}
-            toDate={toDate}
-            handleFromDateChange={handleFromDateChange}
-            handleToDateChange={handleToDateChange}
-            handleSearchClick={handleSearchClick}
-            isLoading={isLoading}
-          />
-        )}
+        <AppContext.Provider
+          value={{
+            searchTerm,
+            setSearchTerm,
+            fromDate,
+            toDate,
+            data,
+            currentLocation,
+            setCurrentLocation,
+            mapPinDefault,
+            mapPinHighlight,
+            handleFromDateChange,
+            handleToDateChange,
+            handleSearchClick,
+            isLoading,
+          }}>
+          {data ? <SearchResults /> : <SearchForm />}
+        </AppContext.Provider>
       </div>
       <div className="map-container">
         <Map

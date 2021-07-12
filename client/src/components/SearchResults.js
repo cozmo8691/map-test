@@ -1,18 +1,21 @@
 import React from "react";
+import { useAppContext } from "./contextLib";
 import { formatUELN, formatDisplayDate, formatDateObjDisplay } from "../util";
 
 import styles from "./styles/SearchResults.module.css";
 
-const SearchResults = ({
-  searchTerm,
-  fromDate,
-  toDate,
-  data,
-  setCurrentLocation,
-  currentLocation,
-  mapPinDefault,
-  mapPinHighlight,
-}) => {
+const SearchResults = () => {
+  const {
+    searchTerm,
+    fromDate,
+    toDate,
+    data,
+    setCurrentLocation,
+    currentLocation,
+    mapPinDefault,
+    mapPinHighlight,
+  } = useAppContext();
+
   return (
     <div className={styles.searchResults}>
       <div className={styles.toggleDisplay}>

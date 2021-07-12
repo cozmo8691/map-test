@@ -32,7 +32,6 @@ interface ILocation {
 }
 
 app.get("/equines/:query", async (req, res) => {
-  // const equines = data;
   const query = req.params.query;
   const { from, to } = req.query;
 
@@ -54,13 +53,11 @@ app.get("/equines/:query", async (req, res) => {
 
   console.log(equines);
 
-  // if (locationSearch?.length > 1) {
   try {
     res.json(equines);
   } catch (err) {
     res.status(500).json({ error: "oh noes something went wrong" });
   }
-  // }
 
   res.end();
 });

@@ -1,17 +1,20 @@
 import React from "react";
+import { useAppContext } from "./contextLib";
 import DateInputs from "./DateInputs";
 import styles from "./styles/SearchForm.module.css";
 
-const SearchForm = ({
-  searchTerm,
-  setSearchTerm,
-  fromDate,
-  toDate,
-  handleFromDateChange,
-  handleToDateChange,
-  handleSearchClick,
-  isLoading,
-}) => {
+const SearchForm = () => {
+  const {
+    searchTerm,
+    setSearchTerm,
+    fromDate,
+    toDate,
+    handleFromDateChange,
+    handleToDateChange,
+    handleSearchClick,
+    isLoading,
+  } = useAppContext();
+
   return (
     <form className={styles.searchForm}>
       <fieldset className={styles.uelnNumber}>
