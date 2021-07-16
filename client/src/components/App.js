@@ -23,6 +23,7 @@ function App() {
   });
   const [currentLocation, setCurrentLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isShowHeatmap, setIsShowHeatmap] = useState(false);
 
   const performSearch = useCallback(() => {
     const performSearch = async () => {
@@ -95,6 +96,8 @@ function App() {
             handleToDateChange,
             handleSearchClick,
             isLoading,
+            isShowHeatmap,
+            setIsShowHeatmap,
           }}>
           {data ? <SearchResults /> : <SearchForm />}
         </AppContext.Provider>
@@ -105,6 +108,7 @@ function App() {
           currentLocation={currentLocation}
           mapPinDefault={mapPinDefault}
           mapPinHighlight={mapPinHighlight}
+          isShowHeatmap={isShowHeatmap}
         />
       </div>
     </div>

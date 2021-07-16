@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import mapboxgl from "mapbox-gl";
 import Marker from "./Marker";
@@ -16,23 +16,64 @@ const MapboxGLMap = ({
   currentLocation,
   mapPinDefault,
   mapPinHighlight,
+  isShowHeatmap = false,
 }) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const currentMarkers = useRef([]);
-  const [isShowHeatmap, setIsShowHeatMap] = useState(true);
 
   useEffect(() => {
     currentMarkers.current.forEach((marker) => {
       marker.remove();
     });
 
-    if (!isMapLoaded || !data || isShowHeatmap) {
+    if (!isMapLoaded || !data) {
       return;
     }
 
     currentMarkers.current = [];
+    let features = [];
+
+    const source = map.getSource("locations");
+    if (source) {
+      console.log("clearing features");
+      source.setData({
+        type: "FeatureCollection",
+        features,
+      });
+    }
+
+    if (isShowHeatmap) {
+      // add a duration property to the data
+      features = data.map((d) => {
+        const duration = differenceInDays(
+          new Date(d.date_to),
+          new Date(d.date_from)
+        );
+
+        return {
+          type: "Feature",
+          properties: { duration },
+          geometry: {
+            type: "Point",
+            coordinates: [d.location.long, d.location.lat],
+          },
+        };
+      });
+    }
+
+    if (source) {
+      console.log("setting features");
+      source.setData({
+        type: "FeatureCollection",
+        features,
+      });
+    }
+
+    if (isShowHeatmap) {
+      return;
+    }
 
     const markers = data.map((result) => {
       const {
@@ -73,39 +114,18 @@ const MapboxGLMap = ({
   ]);
 
   useEffect(() => {
-    if (!isMapLoaded || !data || !isShowHeatmap) {
+    if (!isMapLoaded) {
       return;
     }
 
-    currentMarkers.current.forEach((marker) => {
-      marker.remove();
-    });
-
-    currentMarkers.current = [];
-
-    // add a duration property to the data
-    const features = data.map((d) => {
-      const duration = differenceInDays(
-        new Date(d.date_to),
-        new Date(d.date_from)
-      );
-
-      return {
-        type: "Feature",
-        properties: { duration },
-        geometry: {
-          type: "Point",
-          coordinates: [d.location.long, d.location.lat],
-        },
-      };
-    });
+    console.log("loading heatmap layer");
 
     // add the source
     map.addSource("locations", {
       type: "geojson",
       data: {
         type: "FeatureCollection",
-        features,
+        features: [],
       },
     });
 
@@ -165,7 +185,7 @@ const MapboxGLMap = ({
       },
       "waterway-label"
     );
-  }, [data, isMapLoaded, isShowHeatmap, map]);
+  }, [isMapLoaded, map]);
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
@@ -180,6 +200,7 @@ const MapboxGLMap = ({
       map.on("load", () => {
         setMap(map);
         setIsMapLoaded(true);
+        // setHeatmapLayer();
       });
     };
 

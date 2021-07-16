@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppContext } from "./contextLib";
 import { formatUELN, formatDisplayDate, formatDateObjDisplay } from "../util";
 
@@ -14,13 +14,27 @@ const SearchResults = () => {
     currentLocation,
     mapPinDefault,
     mapPinHighlight,
+    isShowHeatmap,
+    setIsShowHeatmap,
   } = useAppContext();
 
   return (
     <div className={styles.searchResults}>
-      <div className={styles.toggleDisplay}>
-        <div className={styles.btnLocationsSelected}>Locations</div>
-        <div className={styles.btnHeatmap}>Heat Map</div>
+      <div
+        className={styles.toggleDisplay}
+        onClick={() => setIsShowHeatmap(!isShowHeatmap)}>
+        <div
+          className={
+            isShowHeatmap ? styles.btnLocations : styles.btnLocationsSelected
+          }>
+          Locations
+        </div>
+        <div
+          className={
+            isShowHeatmap ? styles.btnHeatmapSelected : styles.btnHeatmap
+          }>
+          Heat Map
+        </div>
       </div>
       <h2 className={styles.searchResultsHeading}>
         Movement locations for UELN:
