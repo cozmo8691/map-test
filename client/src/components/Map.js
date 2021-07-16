@@ -24,24 +24,30 @@ const MapboxGLMap = ({
   const currentMarkers = useRef([]);
 
   useEffect(() => {
+    if (!isMapLoaded) {
+      return;
+    }
+
+    // clear the map details
     currentMarkers.current.forEach((marker) => {
       marker.remove();
     });
 
-    if (!isMapLoaded || !data) {
-      return;
-    }
-
     currentMarkers.current = [];
-    let features = [];
 
     const source = map.getSource("locations");
-    if (source) {
+    let features = [];
+
+    if (source && isMapLoaded) {
       console.log("clearing features");
       source.setData({
         type: "FeatureCollection",
         features,
       });
+    }
+
+    if (!data) {
+      return;
     }
 
     if (isShowHeatmap) {
@@ -63,13 +69,10 @@ const MapboxGLMap = ({
       });
     }
 
-    if (source) {
-      console.log("setting features");
-      source.setData({
-        type: "FeatureCollection",
-        features,
-      });
-    }
+    source.setData({
+      type: "FeatureCollection",
+      features,
+    });
 
     if (isShowHeatmap) {
       return;
@@ -114,11 +117,9 @@ const MapboxGLMap = ({
   ]);
 
   useEffect(() => {
-    if (!isMapLoaded) {
+    if (!isMapLoaded || map.getSource("locations")) {
       return;
     }
-
-    console.log("loading heatmap layer");
 
     // add the source
     map.addSource("locations", {
@@ -200,7 +201,6 @@ const MapboxGLMap = ({
       map.on("load", () => {
         setMap(map);
         setIsMapLoaded(true);
-        // setHeatmapLayer();
       });
     };
 
