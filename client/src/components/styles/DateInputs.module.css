@@ -4,15 +4,33 @@
 }
 
 .dateInputs {
-  margin-top: 5px;
+  margin-top: 15px;
   display: flex;
   flex-direction: row;
 }
 
-.dateInputsInput {
-  width: 30px;
+.day,
+.month,
+.year {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding-top: 15px;
+  margin-top: 0;
+  margin-right: 15px;
 }
 
-.dateInputsFieldset {
-  margin-right: 10px;
+.dateInputsFieldsetLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.day input,
+.month input {
+  width: 24px;
+}
+
+.year input {
+  width: 40px;
 }

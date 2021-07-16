@@ -1,42 +1,35 @@
 import React from "react";
 import styles from "./styles/DateInputs.module.css";
+import DateInput from "./DateInput";
 
 const DateInputs = ({
   title,
   dateObject: { day, month, year },
   handleDateChange,
 }) => {
+  const inputData = [
+    { label: "Day", value: day, dateKey: "day", placeholder: "DD" },
+    { label: "Month", value: month, dateKey: "month", placeholder: "MM" },
+    {
+      label: "Year",
+      value: year,
+      dateKey: "year",
+      placeholder: "YYYY",
+      className: styles.yearInput,
+    },
+  ];
+
   return (
     <div className={styles.dateInputsContainer}>
       <h2>{title}</h2>
       <div className={styles.dateInputs}>
-        <fieldset className={styles.dateInputsFieldset}>
-          <label>Day</label>
-          <input
-            type="text"
-            value={day}
-            onChange={(e) => handleDateChange("day", e.target.value)}
-            className={styles.dateInputsInput}
+        {inputData.map((input) => (
+          <DateInput
+            key={input.dateKey}
+            {...input}
+            handleDateChange={handleDateChange}
           />
-        </fieldset>
-        <fieldset className={styles.dateInputsFieldset}>
-          <label>Month</label>
-          <input
-            type="text"
-            value={month}
-            onChange={(e) => handleDateChange("month", e.target.value)}
-            className={styles.dateInputsInput}
-          />
-        </fieldset>
-        <fieldset className={styles.dateInputsFieldset}>
-          <label>Year</label>
-          <input
-            type="text"
-            value={year}
-            onChange={(e) => handleDateChange("year", e.target.value)}
-            className={styles.dateInputsInput}
-          />
-        </fieldset>
+        ))}
       </div>
     </div>
   );
