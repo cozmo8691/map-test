@@ -1,4 +1,4 @@
-# Equine Register Test
+# Map code test
 
 Thanks for giving me a shot a this.
 
