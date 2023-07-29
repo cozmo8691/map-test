@@ -1,7 +1,5 @@
 # Map code test
 
-Thanks for giving me a shot a this.
-
 ## Installation
 
 The project consists of an express server and a react client. Both projects can be installed and run from the root directory.
